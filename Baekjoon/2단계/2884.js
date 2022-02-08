@@ -14,13 +14,6 @@ let input = fs.readFileSync(filePath).toString().split("\n");
 
 const [h, m] = input[0].split(" ");
 
-//  // fs 모듈로 할 때 런타임 에러가 떠서 readline 모듈 사용하였음
-//  const readline = require("readline");
-//  const std = readline.createInterface({
-//      input: process.stdin,
-//      output: process.stdout
-//  });
-
 let time = new Date(2022,01,01,h,m);
 time.setMinutes(time.getMinutes() - 45);
 console.log(time.getHours()+' '+ time.getMinutes());
