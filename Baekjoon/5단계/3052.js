@@ -10,11 +10,13 @@ const { deflateSync } = require("zlib");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().split("\n");
 
-const arr = [];
-for(let i = 0; i < input.length; i++){
-    arr[i] = parseInt(input[i]) % 42;
-}
-console.log(Array.from(new Set(arr)).length);
+let arr = input.map((e) => {
+    return e % 42;
+});
+// 마지막에 \n 이 되어 빈값이 하나 들어가기때문에 마지막 요소 제외시켜줌
+arr.pop();
+let set = Array.from(new Set(arr));
+console.log(set.length);
 
 
 
