@@ -11,11 +11,10 @@ const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().split("\n");
 
 const arr = [];
-for(let i = 0; i < 10; i++){
-   // arr 에 42를 나눈 나머지 저장
+for(let i = 0; i < input.length; i++){
     arr[i] = parseInt(input[i]) % 42;
-    console.log(arr[i]);
 }
+console.log(Array.from(new Set(arr)).length);
 
 
 
