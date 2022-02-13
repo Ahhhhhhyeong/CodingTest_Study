@@ -12,20 +12,15 @@
  const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
  let input = fs.readFileSync(filePath).toString().split("\n");
 
- let i = 0;
- 
- while(1){
-    if(i > 0){
-        let aox = input[i];  
-        let arr = (aox !== undefined) ? aox.split('') : '';    
-        arr.pop();
-        let score = 0, point = 0;      
-        for(let j =0; j < arr.length; j++){
-            point = arr[j] == 'O' ? point + 1 : 0;
-            score += point;
-        }
-        console.log(score);
+ let i = 1; 
+ while(1){                                  
+    let arr = (input[i] !== undefined) ? input[i].split('') : '';   // 읽어온 값 분리시킴
+    let score = 0, point = 0;       // 점수를 계산할 point과 전체점수 합산 score
+    for(let j =0; j < arr.length; j++){                             
+        point = arr[j] == 'O' ? point + 1 : 0;      // O 일때 point + 1 (if OO : point = 2)
+        score += point;
     }
+    console.log(score);
     i++;
     if(i > input.length - 1) break;
 }
