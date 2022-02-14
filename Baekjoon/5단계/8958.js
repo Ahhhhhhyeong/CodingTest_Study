@@ -8,12 +8,12 @@
  */
 
  const fs = require("fs");
- const { deflateSync } = require("zlib");
  const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
  let input = fs.readFileSync(filePath).toString().split("\n");
-
+ 
  let i = 1; 
  while(1){                                  
+    if(i == input.length) break;
     let arr = (input[i] !== undefined) ? input[i].split('') : '';   // 읽어온 값 분리시킴
     let score = 0, point = 0;       // 점수를 계산할 point과 전체점수 합산 score
     for(let j =0; j < arr.length; j++){                             
@@ -22,5 +22,4 @@
     }
     console.log(score);
     i++;
-    if(i > input.length - 1) break;
-}
+ }
