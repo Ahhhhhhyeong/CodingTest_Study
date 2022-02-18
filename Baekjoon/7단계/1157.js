@@ -6,28 +6,19 @@
  const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
  let input = fs.readFileSync(filePath).toString().split("\n");
 
- const word = input.split('').map(x => {
-     x = x.toUpperCase();
-     let temp = x.charCodeAt(0);
-     if(temp >= 65 && temp <= 90) 
-        return String.fromCharCode(temp);
- });
- const result = {};                     // {알파벳 : 개수} 객체 생성
- word.forEach((x) => {
-     result[x] = (result[x] || 0)+1;
- });
-
+ let word =  input[0].toUpperCase().split('');
+ const result = {};                     
+ word.forEach((x) => result[x] = (result[x] || 0) + 1);
 
  let maxChar = '';
+ let cnt = 0;
  for(prop in result){
-     let cnt = 1;
-     let nowChar =  prop;
-     if(result[prop] > cnt){
-         maxChar = nowChar;
-     }
-     else if(result[prop] == cnt){
-         maxChar = '?';
-     }
- }
- 
-console.log(maxChar);
+    if(prop.match(/[A-Z]/)){
+        if(result[prop] > cnt) {
+            maxChar = prop;        
+            cnt = result[prop];
+        }
+        else if(result[prop] == cnt) maxChar = '?';
+    }          
+ } 
+ console.log(maxChar);
