@@ -8,7 +8,7 @@
  const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
  let input = fs.readFileSync(filePath).toString().split("\n");
 
- let cnt = 0;
+ let cnt = input[0];
  for(let i = 1; i <= parseInt(input[0]); i++){
     let letter = [];
     for(word of input[i]){
