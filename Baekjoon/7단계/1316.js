@@ -8,25 +8,18 @@
  const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
  let input = fs.readFileSync(filePath).toString().split("\n");
 
- let cnt = 0;
+ let cnt = input[0];
  for(let i = 1; i <= parseInt(input[0]); i++){
-     const word = input[i];
-     const letters = [];
-     let isGroupWord = true;
-
-    for(let j = 0; j < word.length; j++){
-        if(letters.indexOf(word[j]) === -1){
-            letters.push(word[j]);
-        }
-        else{
-            if(letters.indexOf(word[j]) !== letters.length - 1){
-                isGroupWord = false;
+    let letter = [];
+    for(word of input[i]){
+        if(letter.includes(word)){
+            if(letter[letter.length - 1] !== word){
+                cnt--;
                 break;
             }
+        } else {
+            letter.push(word);
         }
-    }
-    if(isGroupWord){
-        cnt+=1;
     }
  }
  console.log(cnt);

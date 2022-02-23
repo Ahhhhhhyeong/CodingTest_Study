@@ -1,3 +1,6 @@
-2
-yzyzy
-zyzyz
+5
+ab
+aa
+aca
+ba
+bb
