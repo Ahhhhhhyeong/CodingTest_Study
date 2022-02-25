@@ -5,23 +5,23 @@
  const fs = require("fs");
  const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
  let input = fs.readFileSync(filePath).toString().split("/n");
- let n = 0, s = 0, e = 1;
- while(1){
-    let arr = [];
-    if(n === 0){
-         arr.push(1);
-         s = 1; n++;
-    }
-    if(!arr[0]){
-        s = e + 1;
-        e = n * 6 + e;
-        for(let j = s; j <= e; j++){
-            arr.push(j);
+ let N = 0;
+ let sum = 0; 
+ let i = 1;
+ if( input == 1){
+     N = 1;
+     console.log(N);
+ } else{
+    while(true){
+        if(6*sum+2 <= Number(input) && Number(input) <= 6*(sum+i)+1){
+            N = i + 1;
+            console.log(N);
+            break;
         }
-        n++;
-    } 
-    if(arr.includes(Number(input))){
-        console.log(n);
-        break;
-    }   
+        if(Number(input) > 6*(sum+i)+1){
+            sum = sum + i;
+            i++;
+            continue;            
+        }
+    }
  }
