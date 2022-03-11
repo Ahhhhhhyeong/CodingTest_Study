@@ -5,16 +5,18 @@ let input = fs.readFileSync(filePath).toString().trim().split('\n');
 let cnt = Number(input[0]);
 
 const strToNumArr = input[1].split(' ').map(Number);
-const [M, N] = strToNumArr;
-const isPrimeNumber = Array(N + 1).fill(true);
-isPrimeNumber[1] = false;
-
-for(let n = 2; n <= Math.ceil(Math.sqrt(N)); n++){
-    if(isPrimeNumber[n]){
-        let m = 2;
-         while(n * m <= N){
-             isPrimeNumber[n*m] = false;
-             m++;
-         }
+const isPrime = (n) => {
+    if(n===1) return false;
+    for(let i = 2; i <= Math.sqrt(n); i++){
+        if(n % i === 0)
+            return false;
+    }
+    return true;
+}
+let primeCnt = 0;
+for(let i = 0; i < cnt; i++){
+    if(isPrime(strToNumArr[i])){
+        primeCnt++;
     }
 }
+console.log(primeCnt);
