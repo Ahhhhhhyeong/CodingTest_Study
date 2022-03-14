@@ -1,4 +1,6 @@
-/** 베르트랑 공준 */
+/** 베르트랑 공준
+ * N보다 크고 2N보다 작거나 같은 소수의 개수 구하기
+ */
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim().split('\n').map(Number);
