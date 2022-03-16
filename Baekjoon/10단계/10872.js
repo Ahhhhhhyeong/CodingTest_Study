@@ -2,15 +2,11 @@
  * 팩토리얼 작성
  */
 
-const fs = require("fs");
-const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs.readFileSync(filePath).toString().trim().split('\n').map(Number);
-const factorial = (N) => {
-    let result = 1;
-    for(let i = N; i > 0; i--){
-        result *= i;
-    }
-    return result;
-}
+ const fs = require("fs");
+ const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
+ let input = fs.readFileSync(filePath).toString().trim().split('\n').map(Number);
 
-console.log(factorial(input));
+ function factorial(num) {
+     return num > 1 ? num * factorial(num - 1) : 1;
+ }
+ console.log(factorial(input));
