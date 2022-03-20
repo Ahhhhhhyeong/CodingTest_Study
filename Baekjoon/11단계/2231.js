@@ -2,20 +2,14 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim().split('\n').map(Number);
-let constructorArr = [];
-
-const decomposition = (n) => {
-    const N = n.toString().split('');
-    return n + N.reduce((acc, num) => (acc += parseInt(num)), 0);
-}
-
-for(let i = 1; i <= input; i++){
-    if(decomposition(i) === input){
-        constructorArr.push(i);
+let start = input - (input+"").length*9;
+let result = 0;
+console.log(start, input);
+if(start < 0) start = 0;
+for(let i = start; i < input; i++){
+    if(i.toString().split('').map(n => parseInt(n)).reduce((acc, n) => acc + n, 0) + i === input){
+        result = i;
+        break;
     }
 }
-if(constructorArr.length){
-    console.log(Math.min.apply(null, constructorArr));
-}else{
-    console.log(0);
-}
+console.log(result);
