@@ -1,6 +1,5 @@
 /** 체스판 다시 칠하기 */
 const fs = require("fs");
-const { resourceLimits } = require("worker_threads");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim().split('\n');
 const [N, M] = input.shift().split(' ').map(Number);
