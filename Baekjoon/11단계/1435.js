@@ -1,27 +1,16 @@
-/** 영화감독 숌 */
+/** 영화감독 숌 
+ * '666'이 포함되면 카운트가 된다.
+ * 그러니 666이 나오면 input(N번째의 수)의 값을 줄이면 된다!
+*/
+
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim().split('\n').map(Number);
-
 let endNum = 666;
-let temp = endNum
-for(let i = 2; i <= input; i++){
-    temp += 1000;
-    let arr = checkNum(endNum, temp);
-    endNum = Math.min(...arr);
-}
-
-function checkNum(x, y){
-    let arr = [];
-    for(let i = x+1; i <= y; i++){
-        let top = i.toString().split('');
-        for(let j = 0; j < top.length; j++){
-            if(top[j] == '6' && top[j] == top[j+1] && top[j+1] == top[j+2]){
-                arr.push(i);
-            }
-        }
+while(input > 1){   
+    endNum++;
+    if(endNum.toString().includes('666')){
+        input--;
     }
-    return arr;
 }
-
 console.log(endNum);
