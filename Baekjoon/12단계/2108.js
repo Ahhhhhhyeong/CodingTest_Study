@@ -28,15 +28,8 @@ const frequentValue = (x) => {
     frequentResult = frequentArr.length > 1 ? frequentArr[1] : frequentArr[0];
     return frequentResult;
 }
-const avg = (x) =>{
-    let result = 0;
-    for(let i = 0; i < x; i++){
-        result += input[i];
-    }
-    result = Math.round(result / x);
-    return result;
-}
-console.log(avg(countNum)); // 산술평균
+
+console.log(Math.round(input.reduce((a,c) => (a+c),0) / countNum)); // 산술평균
 console.log(sortArr[Math.round(countNum / 2) - 1]); // 중앙값
 console.log(frequentValue(sortArr)); // 최빈값
 console.log(sortArr[sortArr.length - 1] - sortArr[0]); // 범위
