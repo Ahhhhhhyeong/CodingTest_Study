@@ -19,7 +19,8 @@ const cordArrSortAtoB = (arr) => { // 11650
     }).forEach(cord => {
         results += `${cord[0]} ${cord[1]}\n`;
     });
-    return arr;
+ 
+    return results;
 }
 
 const cordArrSortBtoA = (arr) => { // 11651
