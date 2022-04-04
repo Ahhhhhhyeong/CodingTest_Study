@@ -1,4 +1,5 @@
-/** N까지 자연수 중 중복 없이 중복 없이 M개를 고른 수열 */
+// 연산자 끼워넣기
+// 나중에 한 번 더 풀어보기!!
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim().split('\n');
