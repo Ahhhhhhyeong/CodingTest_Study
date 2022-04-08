@@ -1,23 +1,21 @@
 /** 1로 만들기 */
-// 문제 잘 못 이해함<<1차시도
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim().split('\n').map(Number);
-min_cnt = 0;
-let temp = input;
-while(true){
-    if(temp % 3 === 0){
-        temp /= 3;
-        min_cnt += 1;
-    }
-    if(temp % 2 === 0){
-        temp /= 2;
-        min_cnt += 1;
-    }
-    if(temp === 1) break;
-    else{
-        temp -= 1;
-        min_cnt += 1;
-    }
+
+let min_cnt = [];
+let memo = [...Array(input + 1)];
+memo[1] = 0;
+
+for(let i = 2; i <= input; i++){
+  calNumber = [i - 1];
+  if(i % 2 === 0 ){
+    calNumber.push(i / 2);
+  }
+  if(i % 3 === 0){
+    calNumber.push(i / 3);
+  }
+
+  memo[i] = Math.min(...calNumber.map((x) => memo[x])) + 1;
 }
-console.log(min_cnt);
+console.log(memo[input]);
