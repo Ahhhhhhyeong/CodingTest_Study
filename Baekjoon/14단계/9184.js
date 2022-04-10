@@ -2,22 +2,25 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim().split('\n');
-input.pop();
 
-const memo = {};
+let readlineIdx = 0;
+const readInput = () => input[readlineIdx++];
 
-for(let i = 0; i < 20; i++){
-    memo[i] = [];
-    for(let j = 0; j < 20; j++){
-        memo[i][j] = [];
-        for(let k = 0; k < 20; k++){
-            memo[i][j][k] = null;
-        }
+const fillMax = 0;
+const memo = new Array(21);
+
+for(let i = 0; i < 21; ++i){
+    memo[i] = new Array(21);
+    for(let j = 0; j < 21; ++j){
+        memo[i][j] = new Array(21).fill(fillMax);
     }
-    let arr = input[i].split(' ').map(Number);
-    console.log(`w(${arr[0]}, ${arr[1]}, ${arr[2]}) = ${W(arr[0], arr[1], arr[2])}`);
 }
 
+while(true){
+    let [a,b,c] = readInput().split(' ').map(Number);    
+    if(a === -1 && b === -1 && c === -1) break;
+    console.log(`w(${a}, ${b}, ${c}) = ${W(a,b,c)}`);
+}
 
 
 function W(a,b,c){
@@ -27,15 +30,20 @@ function W(a,b,c){
     if(a>20 || b>20 || c>20){
         return W(20,20,20);
     }
-    if(memo[a][b][c]){
+    if(memo[a][b][c] !== fillMax){
         return memo[a][b][c];
     }
     if(a<b && b<c){
-        memo[a][b][c] = W(a, b, c-1) + W(a, b-1, c-1) - W(a, b-1, c);
+        let task1 = memo[a][b][c-1] = W(a,b,c-1);
+        let task2 = memo[a][b-1][c-1] = W(a, b-1, c-1);
+        let task3 = memo[a][b-1][c] = W(a,b-1,c);
+        return memo[a][b][c] = task1 + task2 - task3;
     }
     else{
-        memo[a][b][c] = 
-                W(a-1, b, c) + W(a-1, b-1, c) + W(a-1, b, c-1) - W(a-1, b-1, c-1)
+        let task1 = memo[a-1][b][c] = W(a-1,b,c);
+        let task2 = memo[a-1][b-1][c] = W(a-1, b-1, c);
+        let task3 = memo[a-1][b][c-1] = W(a-1,b,c-1);
+        let task4 = memo[a-1][b-1][c-1] = W(a-1,b-1,c-1);
+        return memo[a][b][c] = task1 + task2 + task3 - task4;
     }
-    return memo[a][b][c];
 }
