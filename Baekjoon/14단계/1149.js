@@ -5,25 +5,13 @@ let input = fs.readFileSync(filePath).toString().trim().split('\n');
 const N = input.shift();
 const rgb = input.map(v => v.split(' ').map(x => +x));
 
-const paied = (n, rgb) => {
-    const memo = [];
-    memo.push(rgb[0]);
-    for(let i = 1; i < n; i++){
-        let redHouse = Math.min(rgb[i-1][1], rgb[i-1][2]) + rgb[i][0];
-        let greenHouse = Math.min(rgb[i-1][0], rgb[i-1][2]) + rgb[i][1];
-        let blueHouse = Math.min(rgb[i-1][0], rgb[i-1][1]) + rgb[i][2];
-        let minCost = [redHouse, greenHouse, blueHouse];
-        memo.push(minCost);      
-    }    
-    console.log(Math.min(...memo[N-1]));
-}
+const memo = [...new Array(N+1)].map(v => new Array(3).fill(0));
+memo[1] = rgb[0];
+for(let i = 2; i <= N; i++){
+    let red = Math.min(memo[i-1][1], memo[i-1][2]) + rgb[i-1][0];
+    let green = Math.min(memo[i-1][0], memo[i-1][2]) + rgb[i-1][1];
+    let blue = Math.min(memo[i-1][0], memo[i-1][1]) + rgb[i-1][2];
+    memo.push([red, green, blue]);
+}    
 
-paied(N, rgb);
-
-/**
-         let redHouse = Math.min(rgb[i-1][1], rgb[i-1][2]) + rgb[i][0];
-         let greenHouse = Math.min(rgb[i-1][0], rgb[i-1][2]) + rgb[i][1];
-         let blueHouse = Math.min(rgb[i-1][0], rgb[i-1][1]) + rgb[i][2];
-         let minCost = [redHouse, greenHouse, blueHouse];
-         memo.push(minCost);
- */
+console.log(Math.min(...memo[parseInt(N)])); 
