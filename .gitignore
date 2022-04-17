@@ -1,5 +1,6 @@
 ### VScode IDE ###
 .vscode
 *.json
+test.txt
 
 Baekjoon/2단계/node_modules/moment/*
