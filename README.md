@@ -1,8 +1,14 @@
 # Study (22.10.05 수정)
 ## :raising_hand:
 
-- **node.js(JavaScript)** 로 문제를 풀고있습니다.   
-- **백준 Online Judge** 의 문제를 풀고있습니다.
-- **16단계 / 동적계획법** 문제를 풀고있습니다.
-- **백트래킹** 공부를 하고있습니다.
+- 사용 언어 : **node.js(JavaScript)**    
+- 온라인 저지 사이트 : **백준 Online Judge**
+- 지금까지 푼 곳 : **16단계 / 동적계획법** 
 
+
+# Study II (22.12.14 수정)
+## :raising_hand:
+
+- 사용 언어 :  **Java** 
+- 온라인 저지 사이트 : **백준 Online Judge**
+- 지금까지 푼 곳 : 
