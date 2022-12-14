@@ -7,7 +7,8 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * MooTube (Silver)
+ * MooTube (Silver) 
+ * 간선트리 사용
  */
 public class Solution {
 
@@ -48,8 +49,7 @@ public class Solution {
                 }
             }
         }
-        sb.append(cnt).append('\n');
+        System.out.println(cnt);
        }
-       System.out.println(sb.toString());
     }  
 }
