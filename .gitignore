@@ -1,6 +1,21 @@
 ### VScode IDE ###
 .vscode
 *.json
+*/node_modules/*
 test.txt
+.metaData
+.vscode
 
-Baekjoon/2단계/node_modules/moment/*
+##Mac
+**/.DS_Store
+
+##Maven
+**/target
+**/build
+**/out
+**/bin
+
+## STS/Eclipse IDE
+**/.settings
+**/.classpath
+**/.project

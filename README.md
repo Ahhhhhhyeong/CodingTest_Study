@@ -1,4 +1,4 @@
-# Study (22.10.05 수정)
+# Study I (22.10.05 수정)
 ## :raising_hand:
 
 - 사용 언어 : **node.js(JavaScript)**    
