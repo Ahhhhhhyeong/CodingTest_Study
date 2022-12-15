@@ -29,7 +29,6 @@ public class Solution {
          video[q].add(new int[]{p, r});
        }
 
-       StringBuilder sb = new StringBuilder();
        for(int i=0; i<Q; i++){
         int k = br.nextInt(), v = br.nextInt();
 
