@@ -6,21 +6,25 @@ import java.util.Scanner;
  * Watering the Fields 
  */
 public class Main {
-    
+    static int[] xArr;
+    static int[] yArr;
+    static int N, C;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int C = sc.nextInt();
+        N = sc.nextInt();
+        C = sc.nextInt();
         
-        int[][] arr = new int[N][2];
+        xArr = new int[N];
+        yArr = new int[N];
+
         for(int i=0; i<N; i++){
-            arr[i][0] = sc.nextInt();
-            arr[i][1] = sc.nextInt();
+            xArr[i] = sc.nextInt();
+            yArr[i] = sc.nextInt();
         }
-        System.out.println(solution(arr, N, C));
+        System.out.println(solution());
     }
 
-    public static int solution(int[][] arr, int N, int C){
+    public static int solution(){
         int result = 0;
         boolean[] visited = new boolean[N];
         
@@ -29,12 +33,11 @@ public class Main {
             visited[i] = true; // (xi, yi) 는 visited에서 true로 중복 안되겠금
             for(int j=0; j<N; j++){ // (xj, yj) 불러와서 계산
                 if(!visited[j]){
-                    int tmp = Math.abs((int) Math.pow((arr[i][0] - arr[j][0]), 2)) + Math.abs((int) Math.pow((arr[i][1] - arr[j][1]), 2));
+                    int tmp = Math.abs((int) Math.pow((xArr[i] - xArr[j]), 2)) + Math.abs((int) Math.pow((yArr[i] - yArr[j]), 2));
                     if(tmp >= C) result+=tmp;
                 }                
             }
         }
-
 
         if(result == 0) result = -1;
         return result;
