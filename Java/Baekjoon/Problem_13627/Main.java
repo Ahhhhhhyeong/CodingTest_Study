@@ -23,7 +23,6 @@ public class Main {
         }
         Collections.sort(list);
         
-        //System.out.println(list.contains(3));
         boolean chk = false;
         for(int i=1; i<=N; i++){
             if(!list.contains(i)){
