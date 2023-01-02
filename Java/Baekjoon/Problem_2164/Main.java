@@ -14,10 +14,9 @@ public class Main {
         for(int i=1; i<=N; i++){
             cards.offer(i);
         }        
-        cards.poll();
-        while(cards.size() != 1){
-            cards.offer(cards.poll());
+        while(cards.size() > 1){
             cards.poll();
+            cards.offer(cards.poll());
         }
         System.out.println(cards.peek());
     }    
