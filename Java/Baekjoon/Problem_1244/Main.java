@@ -19,6 +19,7 @@ public class Main {
             button[i] = Integer.parseInt(st.nextToken());
         }
 
+        stn = Integer.parseInt(bf.readLine());
         for (int i = 0; i < stn; i++) {
             st = new StringTokenizer(bf.readLine());
             int sex = Integer.parseInt(st.nextToken());
@@ -35,21 +36,22 @@ public class Main {
     }
 
     public static void ManSwitch(int num) {
-        for (int i = num; i <= sn; i += num) {
-            button[i] = button[i] == 1 ? 0 : 1;
+        for (int i = 1; i <= sn; i *= num) {
+            if (i % num == 0)
+                button[i] = button[i] == 1 ? 0 : 1;
         }
     }
 
     public static void GirlSwitch(int num) {
         int j = 0;
         for (int i = num; i >= 1; i--) {
-            int tmp = i - j;
+            int tmp = num + j;
             j++;
             if (tmp == i) {
                 button[i] = button[i] == 1 ? 0 : 1;
                 continue;
             }
-            if (button[i] != button[tmp]) {
+            if (button[i] != button[tmp] || tmp > stn) {
                 return;
             }
             button[i] = button[i] == 1 ? 0 : 1;
