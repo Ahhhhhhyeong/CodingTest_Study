@@ -39,13 +39,13 @@ public class Main {
         DFS(R - 1, 0, 1);
         System.out.println(result);
 
+        bf.close();
     }
 
     public static void DFS(int r, int c, int moved) {
         if (r == 0 && c == C - 1) {
-            if (moved == K) {
+            if (moved == K)
                 result++;
-            }
             return;
         } else {
             for (int i = 0; i < 4; i++) {
@@ -58,7 +58,7 @@ public class Main {
                     continue;
 
                 visited[nextR][nextL] = 1;
-                DFS(nextR, nextL, moved++);
+                DFS(nextR, nextL, moved + 1);
                 visited[nextR][nextL] = 0;
             }
         }
