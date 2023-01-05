@@ -32,13 +32,15 @@ public class Main {
 
         for (int i = 1; i <= sn; i++) {
             System.out.printf("%d ", button[i]);
+            if(i % 20 == 0) System.out.println();
         }
     }
 
     public static void ManSwitch(int num) {
-        for (int i = 1; i <= sn; i *= num) {
-            if (i % num == 0)
+        for (int i = 1; i <= sn; i++) {
+            if (i % num == 0){
                 button[i] = button[i] == 1 ? 0 : 1;
+            }
         }
     }
 
@@ -51,9 +53,7 @@ public class Main {
                 button[i] = button[i] == 1 ? 0 : 1;
                 continue;
             }
-            if (button[i] != button[tmp] || tmp > stn) {
-                return;
-            }
+            if(tmp > sn || button[i] != button[tmp]) return;
             button[i] = button[i] == 1 ? 0 : 1;
             button[tmp] = button[tmp] == 1 ? 0 : 1;
         }
