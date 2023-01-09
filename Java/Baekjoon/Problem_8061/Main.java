@@ -28,32 +28,17 @@ public class Main {
         int M = Integer.parseInt(st.nextToken());
        
         int[][] bitmap = new int[N][M];
-
-        for(int i=0; i<N; i++){
-            String str = bf.readLine();
-            for(int j=0; j<M; j++){
-                bitmap[i][j] = Integer.parseInt(str.split("")[j]);
-            }
-        }
-        bitmap = BFS(bitmap, N, M);
-
-        for(int i=0; i<N; i++){
-            for(int j=0; j<M; j++){
-                System.out.printf("%d ", bitmap[i][j]);
-            }
-            System.out.println();
-        }
-    }
-
-    public static int[][] BFS(int[][] bitmap, int N, int M){
         Queue<Node> que = new LinkedList<>();
         boolean[][] visited = new boolean[N][M];
         int[] yarr = {-1, 1, 0, 0};
         int[] xarr = {0, 0, -1, 1};
 
         for(int i=0; i<N; i++){
+            String str = bf.readLine();
             for(int j=0; j<M; j++){
-                if(bitmap[i][j] == 1){
+                int num = Integer.parseInt(str.split("")[j]);
+                bitmap[i][j] = num;
+                if(num == 1){
                     que.add(new Node(i, j, 1));
                     bitmap[i][j] = 0;
                     visited[i][j] = true;
@@ -76,7 +61,13 @@ public class Main {
                 visited[ny][nx] = true;
             }
         }
-        return bitmap;
+
+        for(int i=0; i<N; i++){
+            for(int j=0; j<M; j++){
+                System.out.printf("%d ", bitmap[i][j]);
+            }
+            System.out.println();
+        }
     }
 
 }
