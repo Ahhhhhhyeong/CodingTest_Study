@@ -20,17 +20,14 @@ class Node{
 }
 
 public class Main {
-    static int N,M;
-    static int[][] bitmap;
-
     public static void main(String[] args) throws IOException{
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); //선언   
         StringTokenizer st = new StringTokenizer(bf.readLine());
 
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
        
-        bitmap = new int[N][M];
+        int[][] bitmap = new int[N][M];
 
         for(int i=0; i<N; i++){
             String str = bf.readLine();
@@ -38,7 +35,7 @@ public class Main {
                 bitmap[i][j] = Integer.parseInt(str.split("")[j]);
             }
         }
-        BFS();
+        bitmap = BFS(bitmap, N, M);
 
         for(int i=0; i<N; i++){
             for(int j=0; j<M; j++){
@@ -48,7 +45,7 @@ public class Main {
         }
     }
 
-    public static void BFS(){
+    public static int[][] BFS(int[][] bitmap, int N, int M){
         Queue<Node> que = new LinkedList<>();
         boolean[][] visited = new boolean[N][M];
         int[] yarr = {-1, 1, 0, 0};
@@ -79,6 +76,7 @@ public class Main {
                 visited[ny][nx] = true;
             }
         }
+        return bitmap;
     }
 
 }
