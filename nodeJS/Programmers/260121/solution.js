@@ -25,6 +25,9 @@ function solution(maps) {
         [0, -1],
         [0, 1]
     ];
+    // 방문 기록
+    const visited = Array.from({ length: n }, () => Array(m).fill(false));
+    visited[0][0] = true;
 
     while (queue.length > 0){
         const [x, y] = queue.shift(); // 큐에서 현재 위치를 꺼냄
@@ -34,9 +37,10 @@ function solution(maps) {
             const ny = y + dy; 
             
             // 맵의 범위를 벗어나지 않고, 이동할 수 있는 칸인지 판단
-            if(nx >= 0 && ny >= 0 && nx < n && ny < m && maps[nx][ny] === 1){
+            if(nx >= 0 && ny >= 0 && nx < n && ny < m && maps[nx][ny] === 1 && !visited[nx][ny]){
                 maps[nx][ny] = maps[x][y] + 1; // 이동거리 갱신
                 queue.push([nx, ny]); // 다음 위치를 큐에 추가
+                visited[nx][ny] = true; // 방문 처리
             }
         }
     }
