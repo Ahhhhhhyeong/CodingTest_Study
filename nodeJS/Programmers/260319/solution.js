@@ -35,7 +35,7 @@ function solution(tickets) {
             }
         }
 
-        // 도착지를 알파벳 역순으로 정렬 : pop()로 가장 앞서는 도착지를 선택하기 위해 역순으로 정렬
+        // 도착지를 알파벳 역순으로 정렬 : pop()로 가장 앞서는 도착지를 선택하기 위해 역순으로 정렬 
         temp.sort((a, b) => b.destination.localeCompare(a.destination));
         
         // 정렬된 티켓을 사용하여 DFS 탐색
