@@ -59,8 +59,8 @@ if grep -qE 'describe\(' "$SOLUTION_FILE" 2>/dev/null; then
 fi
 
 if [[ "$IS_TEST_STYLE" == true ]]; then
-  # describe/it/Test.assertEquals 폴리필을 앞에 붙여서 실행
-  echo "[TEST] 테스트 스타일 감지 → describe/it/Test 폴리필 주입"
+  # describe/it/assert/Test 폴리필을 앞에 붙여서 실행
+  echo "[TEST] 테스트 스타일 감지 → describe/it/assert/Test 폴리필 주입"
   echo "[RUN] node <polyfill> + ${SOLUTION_FILE#$BASE_DIR/}"
   node -e "
 const fs = require('fs');
@@ -68,9 +68,11 @@ let passed = 0;
 let failed = 0;
 let currentSuite = '';
 let currentTest = '';
+let assertionsInCurrentTest = 0;
 
 const Test = {
   assertEquals(actual, expected) {
+    assertionsInCurrentTest++;
     if (actual === expected) {
       passed++;
       console.log('  ✅ PASS [' + currentSuite + ' > ' + currentTest + '] actual=' + actual);
@@ -81,8 +83,35 @@ const Test = {
   }
 };
 
+const assert = {
+  strictEqual(actual, expected, message) {
+    assertionsInCurrentTest++;
+    if (actual === expected) {
+      passed++;
+      console.log('  ✅ PASS [' + currentSuite + ' > ' + currentTest + '] actual=' + actual);
+    } else {
+      failed++;
+      console.log('  ❌ FAIL [' + currentSuite + ' > ' + currentTest + '] ' + (message || ('expected=' + expected + ', actual=' + actual)));
+    }
+  }
+};
+
 function describe(name, fn) { currentSuite = name; fn(); }
-function it(name, fn) { currentTest = name; fn(); }
+function it(name, fn) {
+  currentTest = name;
+  assertionsInCurrentTest = 0;
+
+  try {
+    fn();
+    if (assertionsInCurrentTest === 0) {
+      passed++;
+      console.log('  ✅ PASS [' + currentSuite + ' > ' + currentTest + '] no assertion, completed without error');
+    }
+  } catch (error) {
+    failed++;
+    console.log('  ❌ FAIL [' + currentSuite + ' > ' + currentTest + '] ' + error.message);
+  }
+}
 
 const code = fs.readFileSync('$SOLUTION_FILE', 'utf8');
 eval(code);

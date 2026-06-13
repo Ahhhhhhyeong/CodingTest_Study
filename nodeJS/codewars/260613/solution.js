@@ -24,9 +24,6 @@ Example scoring
 Note: your solution must not modify the input array. 
 */
 
-console.log(score([5, 1, 3, 4, 1])) // 250
-console.log(score([1, 1, 1, 3, 1])) // 1100
-console.log(score([2, 4, 4, 5, 4])) // 450
 
 function score( dice ) {
   const points = {
@@ -61,3 +58,20 @@ function score( dice ) {
   }
   return score;
 }
+
+describe( "Scorer Function", function() {
+  it( "should value this as worthless", function() {
+    // assert.strictEqual( score( [2, 3, 4, 6, 2] ), 0, "Incorrect answer for dice = [2, 3, 4, 6, 2]" );
+    score( [2, 3, 4, 6, 2] );
+  });
+  
+  it( "should value this triplet correctly", function() {
+    // assert.strictEqual( score( [4, 4, 4, 3, 3] ), 400, "Incorrect answer for dice = [4, 4, 4, 3, 3]" );
+    score( [4, 4, 4, 3, 3] );
+  });
+  
+  it( "should value this mixed set correctly", function() {
+    // assert.strictEqual( score( [2, 4, 4, 5, 4] ), 450, "Incorrect answer for dice = [2, 4, 4, 5, 4]" );
+    score( [2, 4, 4, 5, 4] );
+  });
+});
